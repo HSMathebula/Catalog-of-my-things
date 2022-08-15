@@ -1,17 +1,18 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 # Project Name
-
+Catalog of my things
 > Description the project.
-
+"Catalog of my things" is be a simple console app that allows users to manage collections of the things they own. It is be based on the following UML class diagram.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Major languages Ruby
+- Frameworks Rspec
+- Technologies used VS code
 
 ## Live Demo (if available)
+coming soon
 
 [Live Demo Link](https://livedemo.com)
 
@@ -42,11 +43,17 @@ To get a local copy up and running follow these simple example steps.
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
+- GitHub: [@githubhandle](https://github.com/brahimdidi)
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 👤 **Author2**
+
+- GitHub: [@githubhandle](https://github.com/githubhandle)
+- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+
+👤 **Author3**
 
 - GitHub: [@githubhandle](https://github.com/githubhandle)
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
