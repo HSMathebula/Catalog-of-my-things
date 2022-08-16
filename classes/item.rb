@@ -5,8 +5,8 @@ class Item
   attr_reader :publish_date
 
   # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(id, publish_date, archived = false)
-    @id = id
+  def initialize(publish_date, archived = false)
+    @id = Random.rand(1..1000)
     @publish_date = Date.parse(publish_date)
     @archived = archived
   end
