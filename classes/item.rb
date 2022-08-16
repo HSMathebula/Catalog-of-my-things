@@ -1,16 +1,19 @@
 require 'date'
+
 class Item
   attr_accessor :genre, :author, :source, :label
   attr_reader :publish_date
 
-  def initialize(id, publish_date, archived : false)
+  # rubocop:disable Style/OptionalBooleanParameter
+  def initialize(id, publish_date, archived = false)
     @id = id
     @publish_date = Date.parse(publish_date)
     @archived = archived
   end
+  # rubocop:enable Style/OptionalBooleanParameter
 
   def move_to_archive
-    can_be_archived? ? @archived = true : false
+    @archived = true if can_be_archived?
   end
 
   private
