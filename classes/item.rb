@@ -7,4 +7,12 @@ class Item
     @archived = archived
   end
 
+  def move_to_archive
+    
+  end
+
+  private 
+  def can_be_archived? 
+
+  end
 end
