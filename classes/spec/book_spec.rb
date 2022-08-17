@@ -23,5 +23,8 @@ describe Book do
         expect(@book.cover_state).to eq 'bad'
         expect(@book.publisher).to eq 'Brahim'
       end
+      it "raises error when calling a private method" do
+        lambda{ @book.can_be_archived }.should raise_error NoMethodError
+      end
     end
 end
