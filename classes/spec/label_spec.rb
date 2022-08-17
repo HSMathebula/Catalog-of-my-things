@@ -31,7 +31,9 @@ describe Label do
     it "can receive items" do
       expect(@label.items).to include @item1, @item2, @item3
     end
-    
+    it "the item added should have its label set to this label" do
+      expect(@item1.label && @item2.label && @item3.label).to eq @label
+    end
   end
 
 end
