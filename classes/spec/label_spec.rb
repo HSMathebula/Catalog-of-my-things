@@ -8,6 +8,12 @@ describe Label do
     @item1 = Book.new('2022-09-09', false, 'Brahim', 'bad')
   end
 
+  it "is an instance of class Label" do
+    @label.should be_an_instance_of Label
+    @label.class == Label
+
+  end
   
+
 
 end
