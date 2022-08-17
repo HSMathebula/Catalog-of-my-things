@@ -1,9 +1,9 @@
-require 'classes/item.rb'
+require 'classes/item'
 
 class MusicAlbum < Item
   attr_accessor :id, :name, :on_spotify, :publish_date
 
-  def initialize(name, publish_date, on_spotufy)
+  def initialize(name, publish_date, _on_spotufy)
     super(publish_date)
     @id = Random.rand(1...1000)
     @name = name
