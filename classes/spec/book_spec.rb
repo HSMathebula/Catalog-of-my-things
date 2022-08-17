@@ -17,6 +17,11 @@ describe Book do
       it "should be a child of class item" do
         expect(@book.class.superclass).to eq(Item)
       end
-  
+      it "should return the right values and types" do
+        expect(@book.publish_date.class).to eq(Date)
+        expect(@book.publish_date).to eq Date.parse('2022-09-09')
+        expect(@book.cover_state).to eq 'bad'
+        expect(@book.publisher).to eq 'Brahim'
+      end
     end
 end
