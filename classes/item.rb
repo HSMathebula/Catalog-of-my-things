@@ -6,6 +6,7 @@ class Item
   # rubocop:disable Style/OptionalBooleanParameter
   def initialize(publish_date, archived = false)
     @id = rand(1..1000)
+
     @publish_date = Date.parse(publish_date)
     @archived = archived
   end
