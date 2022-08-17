@@ -28,6 +28,10 @@ describe Label do
     @item3 = Book.new('2012-02-05', false, 'Abderaman', 'good')
     @label.add_item(@item1); @label.add_item(@item2); @label.add_item(@item3)
     end
+    it "can receive items" do
+      expect(@label.items).to include @item1, @item2, @item3
+    end
+    
   end
 
 end
