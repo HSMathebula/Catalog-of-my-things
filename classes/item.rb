@@ -12,6 +12,11 @@ class Item
   end
   # rubocop:enable Style/OptionalBooleanParameter
 
+  def add_author(author)
+    @author = author
+    author.items.push(self) unless author.items.include?(self)
+  end
+
   def move_to_archive
     @archived = true if can_be_archived?
   end
