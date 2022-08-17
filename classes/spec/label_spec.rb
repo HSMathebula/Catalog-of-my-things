@@ -13,7 +13,14 @@ describe Label do
     @label.class == Label
 
   end
-  
+  it "returns the right value" do
+    expect(@label.color).to eq 'purple'
+  end
+  it "values are editable" do
+    @label.title = 'green money'; @label.color = 'red'
+    expect(@label.title).to eq 'green money'
+    expect(@label.color).to eq 'red'
+  end
 
 
 end
