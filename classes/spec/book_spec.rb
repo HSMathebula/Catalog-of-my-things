@@ -14,6 +14,9 @@ describe Book do
       it "should throw error when given wrong parameters" do
         lambda{Book.new "2022-01-02", true, 'bamo'}.should raise_exception ArgumentError
       end
-     
+      it "should be a child of class item" do
+        expect(@book.class.superclass).to eq(Item)
+      end
+  
     end
 end
