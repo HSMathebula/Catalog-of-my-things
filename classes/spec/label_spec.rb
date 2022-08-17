@@ -22,5 +22,12 @@ describe Label do
     expect(@label.color).to eq 'red'
   end
 
+  describe "should have relationship with Item ( which is a book )" do
+    before :each do
+    @item2 = Book.new('2011-02-09', true, 'Sidi', 'very good')
+    @item3 = Book.new('2012-02-05', false, 'Abderaman', 'good')
+    @label.add_item(@item1); @label.add_item(@item2); @label.add_item(@item3)
+    end
+  end
 
 end
