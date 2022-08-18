@@ -78,4 +78,33 @@ def load_authors
     @authors.each do |au|
       puts "author first_name: #{au.first_name}, last_name: #{au.last_name}"
     end
+end
+
+
+def save_autor(first_name, last_name)
+    obj = {
+      first_name: first_name,
+      last_name: last_name,
+    }
+
+    if File.exist?('./data/authors.json')
+      file = File.open('./data/authors.json')
+
+      if file.size.zero?
+        author = [obj]
+      else
+        author = JSON.parse(File.read('./data/authors.json'))
+        author << obj
+      end
+
+      file.close
+
+      myfile = File.open('./data/authors.json', 'w')
+      myfile.write(JSON.pretty_generate(author))
+      myfile.close
+
+    else
+      puts 'File empty. add new author.'
+    end
+end
   
