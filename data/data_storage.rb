@@ -143,7 +143,7 @@ def load_labels
   else 
    labels = JSON.parse(File.read('./data/labels.json'))
    labels.select do |l|
-    label = Book.new(l['title'],l['color'],)
+    label = Label.new(l['title'],l['color'],)
     @labels << label
     end
   end
