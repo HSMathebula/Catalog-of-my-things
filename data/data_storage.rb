@@ -1,5 +1,6 @@
 require_relative '../game'
 require_relative '../auhor'
+require_relative '../classes/book'
 require 'json'
 
 def load_games
@@ -107,4 +108,19 @@ def save_autor(first_name, last_name)
       puts 'File empty. add new author.'
     end
 end
+
+def load_books
+  @books = []
+  if File.empty?('./data/books.json')
+        'Please add new books'
+  else 
+   books = JSON.parse(File.read('./data/books.json'))
+   books.select do |b|
+    book = Book.new(b['publish_date'],b['archived'],b['publisher'],b['cover_state'])
+    @books << book
+    end
+  end
+end
+
+  
   
