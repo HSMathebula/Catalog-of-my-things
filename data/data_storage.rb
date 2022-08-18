@@ -10,8 +10,8 @@ def load_games
     else
       games = JSON.parse(File.read('./data/games.json'))
       games.each do |game|
-        games  = Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'])
-        @games << games 
+        games = Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'])
+        @games << games
       end
     end
     file.close
@@ -19,7 +19,9 @@ def load_games
     puts 'File empty. add new game.'
   end
   puts 'list of availble games'
-  @games.each { |ga| puts "game multiplayer: #{ga.multiplayer}, last_played_at: #{ga.last_played_at}, publish_date: #{ga.publish_date}" } unless @games.empty?
-end
+  return if @games.empty?
 
+  @games.each do |ga|
+    puts "game multiplayer: #{ga.multiplayer}, last_played_at: #{ga.last_played_at}, publish_date: #{ga.publish_date}"
+  end
 end
