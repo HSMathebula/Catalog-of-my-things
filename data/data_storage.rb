@@ -147,6 +147,17 @@ def load_labels
     @labels << label
     end
   end
+  def add_label(title,color)
+    file = File.open('./data/labels.json')
+    # create a new label, set a hash with data
+    label = Label.new(title,color)
+    label_hash = {title:title,  color:color}
+  # push label to local @labels array, also overwrite the json file by adding the new label
+    @labels << label
+    File.empty?('./data/labels.json') ? label_json_array = [] : label_json_array = JSON.parse(File.read('./data/labels.json')) 
+    label_json_array << label_hash
+    File.write('./data/labels.json',JSON.generate(label_json_array))
+  end
 end
 
 
