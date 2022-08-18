@@ -88,10 +88,10 @@ class App
     album = MusicAlbum.new(name, publish_date, on_spotify)
 
     @albums << album
-    myFile = File.empty?('./data/music_albums.json') ? [] : JSON.parse(File.read('./data/music_albums.json'))
-    myFile << obj
+    my_file = File.empty?('./data/music_albums.json') ? [] : JSON.parse(File.read('./data/music_albums.json'))
+    my_file << obj
 
-    File.write('./data/music_albums.json', JSON.generate(myFile))
+    File.write('./data/music_albums.json', JSON.generate(my_file))
   end
 
   def load_genres
@@ -108,12 +108,12 @@ class App
 
   def save_genre(name)
     obj = { name: name }
-    genre = Label.new(name)
+    genre = Genre.new(name)
 
     @genres << genre
-    myFile = File.empty?('./data/labels.json') ? [] : JSON.parse(File.read('./data/labels.json'))
-    myFile << obj
-    File.write('./data/labels.json', JSON.generate(myFile))
+    my_file = File.empty?('./data/genres.json') ? [] : JSON.parse(File.read('./data/genres.json'))
+    my_file << obj
+    File.write('./data/genres.json', JSON.generate(my_file))
   end
 end
 
