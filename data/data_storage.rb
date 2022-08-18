@@ -129,9 +129,9 @@ def add_book(publish_date,archived,publisher,cover_state)
   publisher: publisher, 
   cover_state: cover_state
 }
-# push book to local @books array, also overwrite the json file by adding the new book
+# push book to local @books array, also overwrite the json file by adding the new book, create new [] if file is empty
   @books << book
-  book_json_array = JSON.parse(File.read('./data/books.json'))
+  File.empty?('./data/labels.json') ? label_json_array = [] : label_json_array = JSON.parse(File.read('./data/labels.json')) 
   book_json_array << book_hash
   File.write('./data/books.json',JSON.generate(book_json_array))
 end
