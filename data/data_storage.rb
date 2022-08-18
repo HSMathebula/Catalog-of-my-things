@@ -121,6 +121,21 @@ def load_books
     end
   end
 end
+def add_book(publish_date,archived,publisher,cover_state)
+  # create a new book, set a hash with data
+  book = Book.new(publish_date,archived,publisher,cover_state)
+  book_hash = { publish_date: publish_date, 
+  archived: archived, 
+  publisher: publisher, 
+  cover_state: cover_state
+}
+# push book to local @books array, also overwrite the json file by adding the new book
+  @books << book
+  book_json_array = JSON.parse(File.read('./data/books.json'))
+  book_json_array << book_hash
+  File.write('./data/books.json',JSON.generate(book_json_array))
+end
+
 
   
   
