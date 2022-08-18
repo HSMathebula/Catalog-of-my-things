@@ -136,6 +136,20 @@ def add_book(publish_date,archived,publisher,cover_state)
   File.write('./data/books.json',JSON.generate(book_json_array))
 end
 
+def load_labels
+  @labels = []
+  if File.empty?('./data/labels.json')
+        'Please add new labels'
+  else 
+   labels = JSON.parse(File.read('./data/labels.json'))
+   labels.select do |l|
+    label = Book.new(l['title'],l['color'],)
+    @labels << label
+    end
+  end
+end
+
+
 
   
   
