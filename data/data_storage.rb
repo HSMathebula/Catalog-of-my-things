@@ -1,5 +1,7 @@
 require_relative '../classes/book'
 require_relative '../classes/label'
+require_relative '../classes/music_albums'
+require_relative '../classes/genres'
 
 require 'json'
 
@@ -9,6 +11,8 @@ class App
   def initialize
     @books = []
     @labels = []
+    @albums = []
+    @genres = []
   end
 
   def load_books
@@ -58,6 +62,58 @@ class App
     label_json_array = File.empty?('./data/labels.json') ? [] : JSON.parse(File.read('./data/labels.json'))
     label_json_array << label_hash
     File.write('./data/labels.json', JSON.generate(label_json_array))
+  end
+
+  # music
+
+  def load_albums
+    if File.empty?('./data/music_albums.json')
+      'Please add new album'
+    else
+      albums = JSON.parse(File.read('./data/music_albums.json'))
+      albums.select do |a|
+        album = MusicAlbum.new(a['name'], a['publish_date'], a['on_spotify'])
+        @albums << album
+      end
+    end
+  end
+
+  def save_album(name, publish_date, on_spotify)
+    obj = {
+      name: name,
+      publish_date: publish_date,
+      on_spotify: on_spotify
+    }
+
+    album = MusicAlbum.new(name, publish_date, on_spotify)
+
+    @albums << album
+    myFile = File.empty?('./data/music_albums.json') ? [] : JSON.parse(File.read('./data/music_albums.json'))
+    myFile << obj
+
+    File.write('./data/music_albums.json', JSON.generate(myFile))
+  end
+
+  def load_genres
+    if File.empty?('./data/genres.json')
+      'Please add new music'
+    else
+      genres = JSON.parse(File.read('./data/genres.json'))
+      genres.select do |g|
+        genre = Genre.new(g['name'])
+        @genres << genre
+      end
+    end
+  end
+
+  def save_genre(name)
+    obj = { name: name }
+    genre = Label.new(name)
+
+    @genres << genre
+    myFile = File.empty?('./data/labels.json') ? [] : JSON.parse(File.read('./data/labels.json'))
+    myFile << obj
+    File.write('./data/labels.json', JSON.generate(myFile))
   end
 end
 
