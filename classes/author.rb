@@ -1,7 +1,8 @@
 class Author
-  attr_accessor :items, :last_name, :first_name
+  attr_accessor :last_name, :first_name
+  attr_reader :items
 
-  def intialize(first_name, last_name)
+  def initialize(first_name, last_name)
     @id = Random.rand(1..1000)
     @first_name = first_name
     @last_name = last_name
