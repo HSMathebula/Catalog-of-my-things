@@ -1,4 +1,4 @@
-require 'Date'
+require 'date'
 class Item
   attr_accessor :genre, :author, :source, :label
   attr_reader :publish_date
