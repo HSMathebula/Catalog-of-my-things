@@ -7,7 +7,7 @@ describe Author do
     @author = Author.new('Nedjwa', 'Bouraiou')
     @game = Game.new('02-04-2011', 'yes', '05-03-2019')
   end
-  it 'takes two parameters and returns a game object' do
+  it 'takes two parameters and returns an author object' do
     @author.should be_an_instance_of Author
   end
   it 'returns if the authors first name' do
