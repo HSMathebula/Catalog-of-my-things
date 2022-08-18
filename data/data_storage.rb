@@ -24,4 +24,32 @@ def load_games
   @games.each do |ga|
     puts "game multiplayer: #{ga.multiplayer}, last_played_at: #{ga.last_played_at}, publish_date: #{ga.publish_date}"
   end
+
+
+def save_game(multiplayer, last_played_at, publish_date)
+    obj = {
+      multiplayer: multiplayer,
+      last_played_at: last_played_at,
+      publish_date: publish_date
+    }
+
+    if File.exist?('./data/games.json')
+      file = File.open('./data/games.json')
+
+      if file.size.zero?
+        game = [obj]
+      else
+        game = JSON.parse(File.read('./data/games.json'))
+        game << obj
+      end
+
+      file.close
+
+      myfile = File.open('./data/games.json', 'w')
+      myfile.write(JSON.pretty_generate(game))
+      myfile.close
+
+    else
+      puts 'File empty. add new game.'
+    end
 end
