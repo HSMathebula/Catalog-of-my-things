@@ -1,4 +1,5 @@
 require_relative '../game'
+require_relative '../auhor'
 require 'json'
 
 def load_games
@@ -10,8 +11,8 @@ def load_games
     else
       games = JSON.parse(File.read('./data/games.json'))
       games.each do |game|
-        games = Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'])
-        @games << games
+        game = Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'])
+        @games << game
       end
     end
     file.close
@@ -53,3 +54,28 @@ def save_game(multiplayer, last_played_at, publish_date)
       puts 'File empty. add new game.'
     end
 end
+
+def load_authors
+    if File.exist?('./data/authors.json')
+      file = File.open('./data/authors.json')
+  
+      if File.empty?('./data/authors.json')
+        'Please add some authors '
+      else
+        authors = JSON.parse(File.read('./data/authors.json'))
+        authors.each do |author|
+            author = Author.new(author['first_name'],author['last_name'])
+          @authors << author
+        end
+      end
+      file.close
+    else
+      puts 'File empty. add new author.'
+    end
+    puts 'list of availble authors'
+    return if @authors.empty?
+  
+    @authors.each do |au|
+      puts "author first_name: #{au.first_name}, last_name: #{au.last_name}"
+    end
+  
