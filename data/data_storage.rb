@@ -17,6 +17,8 @@ class App # rubocop:disable Metrics/ClassLength
     @genres = []
     @games = []
     @authors = []
+    load_games
+    load_authors
   end
 
   def load_books
@@ -88,10 +90,10 @@ class App # rubocop:disable Metrics/ClassLength
     end
   end
 
-  def save_game(multiplayer, last_played_at, publish_date)
+  def save_game(last_played_at, multiplayer, publish_date)
     obj = {
-      multiplayer: multiplayer,
       last_played_at: last_played_at,
+      multiplayer: multiplayer,
       publish_date: publish_date
     }
 
@@ -251,23 +253,67 @@ class App # rubocop:disable Metrics/ClassLength
       puts 'This file dont exist'
     end
   end
+
   def list_books
     load_books
-    if !@books.empty? 
+    unless @books.empty?
       @books.select do |book|
         puts " publisher :#{book.publisher} publish_date :#{book.publish_date}"
       end
     end
   end
-  
-  def add_book
-  end
+
+  def add_book; end
 
   def add_game
+    print 'Publish Date: [YYYY-MM-DD] '
+    publish_date = gets.chomp
+
+    print 'Multiplayer: Y/N '
+    multiplayer = gets.chomp
+    case multiplayer
+    when 'y'
+      answer = 'yes'
+    when 'n'
+      answer = 'no'
+    else
+      puts 'Please add Y or N '
+      answer = gets.chomp
+    end
+
+    print 'Last Played at: [YYYY-MM-DD] '
+    last_played_at = gets.chomp.to_s
+
+    save_game(publish_date, answer, last_played_at)
+    puts 'Game Created successfully'
   end
 
-  def add_album
+  def list_games
+    load_games
+    @games.each do |game|
+      puts "last_played_at :#{game.last_played_at} , multiplayer :#{game.multiplayer} ,publish_date :#{game.publish_date}"
+    end
+  end
+
+  def list_authors
+    load_authors
+    authors.each do |author|
+      puts "First_name :#{author.first_name} , last_name :#{author.last_name}"
+    end
+  end
+
+  def add_album; end
+
+  def get_choice(choice)
+    case choice
+    when 1
+      list_games
+    when 2
+      add_game
+    when 11
+      @exit = true
+    else
+      puts 'wrong choice !'
+    end
   end
 end
-
-
