@@ -18,15 +18,15 @@ class Main < App
   end
 
   
-  # def main
-  #   until @exit
-  #     @option.each do |opt|
-  #       puts opt
-  #     end
-  #     choice = gets.chomp.to_i
-  #     get_choice(choice)
-  #   end
-  # end
+  def main
+    until @exit
+      @option.each do |opt|
+        puts opt
+      end
+      choice = gets.chomp.to_i
+      get_choice(choice)
+    end
+  end
 
 
   def get_choice(choice)
@@ -44,7 +44,6 @@ class Main < App
   
 end
 
-main = Main.new
 
 
 
