@@ -1,9 +1,9 @@
 require_relative '../classes/book'
 require_relative '../classes/label'
-require_relative '../classes/music_albums'
-require_relative '../classes/genres'
-require_relative '../classes/games'
-require_relative '../classes/authors'
+require_relative '../classes/music_album'
+require_relative '../classes/genre'
+require_relative '../classes/game'
+require_relative '../classes/author'
 
 require 'json'
 
@@ -135,7 +135,7 @@ class App
     end
   end
 
-  def save_autor(first_name, last_name)
+  def save_author(first_name, last_name)
     obj = {
       first_name: first_name,
       last_name: last_name
@@ -252,3 +252,9 @@ class App
     end
   end
 end
+
+
+app = App.new()
+
+p app.games.length
+
