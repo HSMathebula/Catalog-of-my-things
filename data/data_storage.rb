@@ -251,8 +251,23 @@ class App # rubocop:disable Metrics/ClassLength
       puts 'This file dont exist'
     end
   end
+  def list_books
+    load_books
+    if !@books.empty? 
+      @books.select do |book|
+        puts " publisher :#{book.publisher} publish_date :#{book.publish_date}"
+      end
+    end
+  end
+  
+  def add_book
+  end
+
+  def add_game
+  end
+
+  def add_album
+  end
 end
 
-app = App.new
-app.save_game('2021-01-30', 'yes', '2021-01-30')
-p app.games.length
+

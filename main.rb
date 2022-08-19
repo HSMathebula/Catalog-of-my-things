@@ -1,5 +1,4 @@
-require './data/data_storage.rb'
-
+require_relative './data/data_storage.rb'
 class Main < App
 
   def initialize
@@ -15,32 +14,20 @@ class Main < App
     '9 : Add a game',
     '10 : Exit'
   ]
-
   @exit = false
   end
 
   
-  def main
-    until @exit
-      @option.each do |opt|
-        puts opt
-      end
-      choice = gets.chomp.to_i
-      get_choice(choice)
-    end
-  end
+  # def main
+  #   until @exit
+  #     @option.each do |opt|
+  #       puts opt
+  #     end
+  #     choice = gets.chomp.to_i
+  #     get_choice(choice)
+  #   end
+  # end
 
-  def list_book
-  end
-  
-  def add_book
-  end
-
-  def add_game
-  end
-
-  def add_album
-  end
 
   def get_choice(choice)
     case choice
@@ -56,6 +43,8 @@ class Main < App
   end
   
 end
+
+main = Main.new
 
 
 
