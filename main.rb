@@ -26,6 +26,7 @@ class Main
     end
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def get_choice(choice)
     @app = App.new
     case choice
@@ -42,7 +43,7 @@ class Main
     when 6
       @app.list_authors
     when 7
-      @app.get_book
+      @app.add_new_book
     when 8
       @app.add_album
     when 9
@@ -53,6 +54,7 @@ class Main
       puts 'wrong choice !'
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
 
 main = Main.new

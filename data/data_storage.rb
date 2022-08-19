@@ -258,15 +258,6 @@ class App # rubocop:disable Metrics/ClassLength
     end
   end
 
-  def list_books
-    load_books
-    unless @books.empty?
-      @books.select do |book|
-        puts " publisher :#{book.publisher} publish_date :#{book.publish_date}"
-      end
-    end
-  end
-
   def add_game
     print 'Publish Date: [YYYY-MM-DD] '
     publish_date = gets.chomp
@@ -317,7 +308,7 @@ class App # rubocop:disable Metrics/ClassLength
     end
   end
 
-  def get_book
+  def add_new_book
     puts 'when was this book published : '
     publish_date = gets.chomp
     publish_date.to_i
