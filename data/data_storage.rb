@@ -338,7 +338,7 @@ class App # rubocop:disable Metrics/ClassLength
     name = gets.chomp
     print 'Genre: '
     g_name = gets.chomp
-    print 'Published data: '
+    print 'Published date: '
     publish_date = gets.chomp
     print 'Music is on Spotify? [Y/N]'
     spotify = gets.chomp.upcase
