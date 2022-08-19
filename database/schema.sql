@@ -27,3 +27,12 @@ CREATE TABLE Items(
   CONSTRAINT genre_fk FOREIGN KEY (genre_id) REFERENCES Genres (id)
 );
 
+CREATE TABLE Book(
+  id SERIAL PRIMARY KEY, 
+  publisher VARCHAR(100),
+  cover_state VARCHAR(100),
+  item_id INT NOT NULL,
+  CONSTRAINT item_fk FOREIGN KEY (item_id) REFERENCES Items (id)
+)
+
+
