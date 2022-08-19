@@ -4,7 +4,7 @@ require_relative '../classes/music_album'
 require_relative '../classes/genre'
 require_relative '../classes/game'
 require_relative '../classes/author'
-
+require 'date'
 require 'json'
 
 class App # rubocop:disable Metrics/ClassLength
@@ -17,6 +17,8 @@ class App # rubocop:disable Metrics/ClassLength
     @genres = []
     @games = []
     @authors = []
+    load_books
+    load_labels
   end
 
   def load_books
@@ -42,7 +44,7 @@ class App # rubocop:disable Metrics/ClassLength
     @books << book
     book_json_array = File.empty?('./data/books.json') ? [] : JSON.parse(File.read('./data/books.json'))
     book_json_array << book_hash
-    File.write('./data/books.json', JSON.generate(book_json_array))
+    File.write('./data/books.json', JSON.pretty_generate(book_json_array))
   end
 
   def load_labels
@@ -65,7 +67,7 @@ class App # rubocop:disable Metrics/ClassLength
     @labels << label
     label_json_array = File.empty?('./data/labels.json') ? [] : JSON.parse(File.read('./data/labels.json'))
     label_json_array << label_hash
-    File.write('./data/labels.json', JSON.generate(label_json_array))
+    File.write('./data/labels.json', JSON.pretty_generate(label_json_array))
   end
 
   # game data preservation
@@ -252,16 +254,18 @@ class App # rubocop:disable Metrics/ClassLength
     end
   end
   def list_books
-    load_books
-    if !@books.empty? 
-      @books.select do |book|
-        puts " publisher :#{book.publisher} publish_date :#{book.publish_date}"
-      end
-    end
+   @books.select do |book|
+    p "publisher: #{book.publisher}, publish_date #{book.publish_date}"
+   end
+  end
+
+  def list_labels
+    @labels.select do |label|
+      p "title: #{label.title}, color: #{label.color}"
+     end
   end
   
-  def add_book
-  end
+  
 
   def add_game
   end
@@ -269,5 +273,10 @@ class App # rubocop:disable Metrics/ClassLength
   def add_album
   end
 end
+
+
+
+app = App.new 
+app.get_book
 
 
