@@ -7,7 +7,7 @@ require_relative '../classes/author'
 
 require 'json'
 
-class App
+class App # rubocop:disable Metrics/ClassLength
   attr_reader :books, :labels, :albums, :genres, :games, :authors
 
   def initialize
