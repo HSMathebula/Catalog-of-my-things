@@ -78,7 +78,7 @@ class App
       else
         games = JSON.parse(File.read('./data/games.json'))
         games.each do |game|
-          game = Game.new(game['publish_date'],game['multiplayer'], game['last_played_at'])
+          game = Game.new(game['publish_date'], game['multiplayer'], game['last_played_at'])
           @games << game
         end
       end
@@ -253,7 +253,6 @@ class App
   end
 end
 
-
-app = App.new()
-app.save_game('2021-01-30','yes','2021-01-30')
+app = App.new
+app.save_game('2021-01-30', 'yes', '2021-01-30')
 p app.games.length
