@@ -11,53 +11,34 @@ Catalog of my things
 - Frameworks Rspec
 - Technologies used VS code
 
-## Live Demo (if available)
-coming soon
-
-[Live Demo Link](https://livedemo.com)
-
-
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+- Copy the link https://github.com/HSMathebula/Catalog-of-my-things.git.
+- Open git bash in your local folder.
+- execute git clone https://github.com/HSMathebula/Catalog-of-my-things.git.
+- Then execute cd Catalog-of-my-things
+- Use bundle install to install the dependencies.
+ ## Authors
 
+👤 **Nedjwa Bouraiou**
+- GitHub: [@Nedjwab](https://github.com/nedjwab)
+- Twitter: [@nedjwab](https://twitter.com/ned_jwa)
+- LinkedIn: [@Bouraiounedjwa](https://www.linkedin.com/feed/)
 
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
-
-## Authors
-
-👤 **Author1**
+👤 **Brahim Didi**
 
 - GitHub: [@githubhandle](https://github.com/brahimdidi)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- Twitter: [@twitterhandle](https://www.linkedin.com/in/sir-didi-b19617205)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/sir-didi-b19617205)
 
-👤 **Author2**
+👤 **Happen Mathebula**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/HSMathebula)
+- Twitter: [@twitterhandle](https://twitter.com/HappenSipho)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/happen-mathebula-4b0438115/)
 
-👤 **Author3**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+## Run tests
+> rspec spec
 
 ## 🤝 Contributing
 
