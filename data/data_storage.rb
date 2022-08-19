@@ -255,6 +255,8 @@ class App # rubocop:disable Metrics/ClassLength
       puts 'This file dont exist'
     end
   end
+
+  # user interface start
   def list_books
    @books.select do |book|
     p "publisher: #{book.publisher}, publish_date #{book.publish_date}"
@@ -284,13 +286,11 @@ class App # rubocop:disable Metrics/ClassLength
     puts 'how is this book cover : '
     cover_state = gets.chomp
     add_book(publish_date,archived,publisher,cover_state)
+    p "Book added succesfully"
   end
 
-  def list_books; end
 
   # def add_book; end
-
-  def add_game; end
 
   def add_album
     print 'Music name: '
@@ -329,6 +329,5 @@ end
 
 
 app = App.new 
-app.get_book
-
+app.add_album
 
