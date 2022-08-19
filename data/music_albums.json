@@ -1,42 +1,17 @@
 [
   {
-    "name": "lopo",
-    "publish_date": "2010-02-02",
+    "name": "lolipop",
+    "publish_date": "2010-02-08",
     "on_spotify": true
   },
   {
-    "name": "poio",
-    "publish_date": "2020-08-06",
+    "name": "love me for ever",
+    "publish_date": "2008-08-08",
     "on_spotify": false
   },
   {
-    "name": "popo",
-    "publish_date": "2008-04-23",
+    "name": "brahim music",
+    "publish_date": "2020-09-09",
     "on_spotify": true
-  },
-  {
-    "name": "yuo",
-    "publish_date": "2006-01-10",
-    "on_spotify": true
-  },
-  {
-    "name": "po",
-    "publish_date": "2010-02-21",
-    "on_spotify": false
-  },
-  {
-    "name": "pop",
-    "publish_date": "2003-05-22",
-    "on_spotify": false
-  },
-  {
-    "name": "tyt",
-    "publish_date": "2010-02-02",
-    "on_spotify": true
-  },
-  {
-    "name": "io",
-    "publish_date": "2010-02-09",
-    "on_spotify": false
   }
 ]

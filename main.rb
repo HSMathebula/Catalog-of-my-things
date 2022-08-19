@@ -1,5 +1,5 @@
 require_relative './data/data_storage'
-class Main < App
+class Main
   def initialize
     @option = [
       '1 : List all books ',
@@ -16,7 +16,7 @@ class Main < App
     @exit = false
   end
 
-  def main
+  def user_interface
     until @exit
       @option.each do |opt|
         puts opt
@@ -26,21 +26,36 @@ class Main < App
     end
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def get_choice(choice)
+    @app = App.new
     case choice
+    when 1
+      @app.list_books
     when 2
-      add_album = App.new
-      add_album.add_album
+      @app.list_albums
+    when 3
+      @app.list_games
+    when 4
+      @app.list_genres
+    when 5
+      @app.list_labels
+    when 6
+      @app.list_authors
+    when 7
+      @app.add_new_book
     when 8
-      list_albums = App.new
-      list_albums.list_albums
+      @app.add_album
+    when 9
+      @app.add_game
     when 10
       @exit = true
     else
       puts 'wrong choice !'
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
 
 main = Main.new
-main.main
+main.user_interface
