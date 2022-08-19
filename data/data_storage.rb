@@ -8,11 +8,15 @@ require_relative '../classes/authors'
 require 'json'
 
 class App
-  attr_reader :books, :labels
+  attr_reader :books, :labels, :albums, :genres, :games, :authors
 
   def initialize
     @books = []
     @labels = []
+    @albums = []
+    @genres = []
+    @games = []
+    @authors = []
   end
 
   def load_books
@@ -63,188 +67,188 @@ class App
     label_json_array << label_hash
     File.write('./data/labels.json', JSON.generate(label_json_array))
   end
-end
 
-# game data preservation
-def load_games
-  if File.exist?('./data/games.json')
-    file = File.open('./data/games.json')
+  # game data preservation
+  def load_games
+    if File.exist?('./data/games.json')
+      file = File.open('./data/games.json')
 
-    if File.empty?('./data/games.json')
-      'Please add some games '
-    else
-      games = JSON.parse(File.read('./data/games.json'))
-      games.each do |game|
-        game = Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'])
-        @games << game
+      if File.empty?('./data/games.json')
+        'Please add some games '
+      else
+        games = JSON.parse(File.read('./data/games.json'))
+        games.each do |game|
+          game = Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'])
+          @games << game
+        end
       end
-    end
-    file.close
-  else
-    puts 'File empty. add new game.'
-  end
-end
-
-def save_game(multiplayer, last_played_at, publish_date)
-  obj = {
-    multiplayer: multiplayer,
-    last_played_at: last_played_at,
-    publish_date: publish_date
-  }
-
-  if File.exist?('./data/games.json')
-    file = File.open('./data/games.json')
-
-    if file.size.zero?
-      game = [obj]
+      file.close
     else
-      game = JSON.parse(File.read('./data/games.json'))
-      game << obj
+      puts 'File empty. add new game.'
     end
-
-    file.close
-
-    myfile = File.open('./data/games.json', 'w')
-    myfile.write(JSON.pretty_generate(game))
-    myfile.close
-
-  else
-    puts 'File empty. add new game.'
   end
-end
 
-def load_authors
-  if File.exist?('./data/authors.json')
-    file = File.open('./data/authors.json')
+  def save_game(multiplayer, last_played_at, publish_date)
+    obj = {
+      multiplayer: multiplayer,
+      last_played_at: last_played_at,
+      publish_date: publish_date
+    }
 
-    if File.empty?('./data/authors.json')
-      'Please add some authors '
-    else
-      authors = JSON.parse(File.read('./data/authors.json'))
-      authors.each do |author|
-        author = Author.new(author['first_name'], author['last_name'])
-        @authors << author
+    if File.exist?('./data/games.json')
+      file = File.open('./data/games.json')
+
+      if file.size.zero?
+        game = [obj]
+      else
+        game = JSON.parse(File.read('./data/games.json'))
+        game << obj
       end
-    end
-    file.close
-  else
-    puts 'File empty. add new author.'
-  end
-end
 
-def save_autor(first_name, last_name)
-  obj = {
-    first_name: first_name,
-    last_name: last_name
-  }
+      file.close
 
-  if File.exist?('./data/authors.json')
-    file = File.open('./data/authors.json')
+      myfile = File.open('./data/games.json', 'w')
+      myfile.write(JSON.pretty_generate(game))
+      myfile.close
 
-    if file.size.zero?
-      author = [obj]
     else
-      author = JSON.parse(File.read('./data/authors.json'))
-      author << obj
+      puts 'File empty. add new game.'
     end
-
-    file.close
-
-    myfile = File.open('./data/authors.json', 'w')
-    myfile.write(JSON.pretty_generate(author))
-    myfile.close
-
-  else
-    puts 'File empty. add new author.'
   end
-end
 
-# Music album and genre
+  def load_authors
+    if File.exist?('./data/authors.json')
+      file = File.open('./data/authors.json')
 
-def load_albums
-  if File.exist?('./data/music_albums.json')
-    file = File.open('./data/music_albums.json')
-
-    if File.empty?('./data/music_albums.json')
-      puts 'Please add new album'
-    else
-      albums = JSON.parse(File.read('./data/music_albums.json'))
-      albums.each do |a|
-        album = MusicAlbum.new(a['name'], a['publish_date'], a['on_spotify'])
-        @albums << album
+      if File.empty?('./data/authors.json')
+        'Please add some authors '
+      else
+        authors = JSON.parse(File.read('./data/authors.json'))
+        authors.each do |author|
+          author = Author.new(author['first_name'], author['last_name'])
+          @authors << author
+        end
       end
-    end
-
-    file.close
-  else
-    puts 'This file dont exits'
-  end
-end
-
-def save_album(name, publish_date, on_spotify)
-  obj = {
-    name: name,
-    publish_date: publish_date,
-    on_spotify: on_spotify
-  }
-
-  if File.exist?('./data/music_albums.json')
-    file = File.open('./data/music_albums.json')
-    if file.size.zero?
-      album = [obj]
+      file.close
     else
-      album = JSON.parse(File.read('./data/music_albums.json'))
-      album << obj
+      puts 'File empty. add new author.'
     end
-    file.close
-
-    myfile = File.open('./data/music_albums.json', 'w')
-    myfile.write(JSON.pretty_generate(album))
-    myfile.close
-  else
-    puts 'This file dont exist'
   end
-end
 
-def load_genres
-  if File.exist?('./data/genres.json')
-    file = File.open('./data/genres.json')
+  def save_autor(first_name, last_name)
+    obj = {
+      first_name: first_name,
+      last_name: last_name
+    }
 
-    if File.empty?('./data/genres.json')
-      'Please add new music'
-    else
-      genres = JSON.parse(File.read('./data/genres.json'))
-      genres.each do |g|
-        genre = Genre.new(g['name'])
-        @genres << genre
+    if File.exist?('./data/authors.json')
+      file = File.open('./data/authors.json')
+
+      if file.size.zero?
+        author = [obj]
+      else
+        author = JSON.parse(File.read('./data/authors.json'))
+        author << obj
       end
-    end
 
-    file.close
-  else
-    puts 'This file dont exits'
-  end
-end
+      file.close
 
-def save_genre(name)
-  obj = { name: name }
+      myfile = File.open('./data/authors.json', 'w')
+      myfile.write(JSON.pretty_generate(author))
+      myfile.close
 
-  if File.exist?('./data/genres.json')
-    file = File.open('./data/genres.json')
-
-    if file.size.zero?
-      genre = [obj]
     else
-      genre = JSON.parse(File.read('./data/genres.json'))
-      genre << obj
+      puts 'File empty. add new author.'
     end
+  end
 
-    file.close
+  # Music album and genre
 
-    myfile = File.open('./data/genres.json', 'w')
-    myfile.write(JSON.pretty_generate(genre))
-    myfile.close
-  else
-    puts 'This file dont exist'
+  def load_albums
+    if File.exist?('./data/music_albums.json')
+      file = File.open('./data/music_albums.json')
+
+      if File.empty?('./data/music_albums.json')
+        puts 'Please add new album'
+      else
+        albums = JSON.parse(File.read('./data/music_albums.json'))
+        albums.each do |a|
+          album = MusicAlbum.new(a['name'], a['publish_date'], a['on_spotify'])
+          @albums << album
+        end
+      end
+
+      file.close
+    else
+      puts 'This file dont exits'
+    end
+  end
+
+  def save_album(name, publish_date, on_spotify)
+    obj = {
+      name: name,
+      publish_date: publish_date,
+      on_spotify: on_spotify
+    }
+
+    if File.exist?('./data/music_albums.json')
+      file = File.open('./data/music_albums.json')
+      if file.size.zero?
+        album = [obj]
+      else
+        album = JSON.parse(File.read('./data/music_albums.json'))
+        album << obj
+      end
+      file.close
+
+      myfile = File.open('./data/music_albums.json', 'w')
+      myfile.write(JSON.pretty_generate(album))
+      myfile.close
+    else
+      puts 'This file dont exist'
+    end
+  end
+
+  def load_genres
+    if File.exist?('./data/genres.json')
+      file = File.open('./data/genres.json')
+
+      if File.empty?('./data/genres.json')
+        'Please add new music'
+      else
+        genres = JSON.parse(File.read('./data/genres.json'))
+        genres.each do |g|
+          genre = Genre.new(g['name'])
+          @genres << genre
+        end
+      end
+
+      file.close
+    else
+      puts 'This file dont exits'
+    end
+  end
+
+  def save_genre(name)
+    obj = { name: name }
+
+    if File.exist?('./data/genres.json')
+      file = File.open('./data/genres.json')
+
+      if file.size.zero?
+        genre = [obj]
+      else
+        genre = JSON.parse(File.read('./data/genres.json'))
+        genre << obj
+      end
+
+      file.close
+
+      myfile = File.open('./data/genres.json', 'w')
+      myfile.write(JSON.pretty_generate(genre))
+      myfile.close
+    else
+      puts 'This file dont exist'
+    end
   end
 end
