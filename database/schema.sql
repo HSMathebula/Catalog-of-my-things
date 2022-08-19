@@ -35,4 +35,10 @@ CREATE TABLE Book(
   CONSTRAINT item_fk FOREIGN KEY (item_id) REFERENCES Items (id)
 )
 
+CREATE TABLE Genres(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100)
+)
+
+
 
