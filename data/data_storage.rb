@@ -4,7 +4,7 @@ require_relative '../classes/music_album'
 require_relative '../classes/genre'
 require_relative '../classes/game'
 require_relative '../classes/author'
-
+require 'date'
 require 'json'
 
 class App # rubocop:disable Metrics/ClassLength
@@ -19,6 +19,10 @@ class App # rubocop:disable Metrics/ClassLength
     @authors = []
     load_games
     load_authors
+    load_books
+    load_labels
+    load_albums
+    load_genres
   end
 
   def load_books
@@ -44,7 +48,7 @@ class App # rubocop:disable Metrics/ClassLength
     @books << book
     book_json_array = File.empty?('./data/books.json') ? [] : JSON.parse(File.read('./data/books.json'))
     book_json_array << book_hash
-    File.write('./data/books.json', JSON.generate(book_json_array))
+    File.write('./data/books.json', JSON.pretty_generate(book_json_array))
   end
 
   def load_labels
@@ -67,7 +71,7 @@ class App # rubocop:disable Metrics/ClassLength
     @labels << label
     label_json_array = File.empty?('./data/labels.json') ? [] : JSON.parse(File.read('./data/labels.json'))
     label_json_array << label_hash
-    File.write('./data/labels.json', JSON.generate(label_json_array))
+    File.write('./data/labels.json', JSON.pretty_generate(label_json_array))
   end
 
   # game data preservation
@@ -254,6 +258,7 @@ class App # rubocop:disable Metrics/ClassLength
     end
   end
 
+
   def list_books
     load_books
     unless @books.empty?
@@ -263,7 +268,6 @@ class App # rubocop:disable Metrics/ClassLength
     end
   end
 
-  def add_book; end
 
   def add_game
     print 'Publish Date: [YYYY-MM-DD] '
@@ -302,18 +306,81 @@ class App # rubocop:disable Metrics/ClassLength
     end
   end
 
-  def add_album; end
+  # user interface start
+  def list_books
+   @books.select do |book|
+    p "publisher: #{book.publisher}, publish_date #{book.publish_date}"
+   end
+  end
 
-  def get_choice(choice)
-    case choice
-    when 1
-      list_games
-    when 2
-      add_game
-    when 11
-      @exit = true
-    else
-      puts 'wrong choice !'
+  def list_labels
+    @labels.select do |label|
+      p "title: #{label.title}, color: #{label.color}"
+     end
+  end
+  
+  def get_book
+    puts 'when was this book published : '
+    publish_date = gets.chomp
+    publish_date.to_i
+    puts 'is it archived'
+    print 'Yes(y) or No(n) : '
+    archived = gets.chomp.to_s.downcase
+    if archived.include? 'y'
+      archived = true
+     else
+      archived = false
+    end
+    puts 'who is this book publisher : '
+    publisher = gets.chomp
+    puts 'how is this book cover : '
+    cover_state = gets.chomp
+    add_book(publish_date,archived,publisher,cover_state)
+    p "Book added succesfully"
+  end
+
+
+  # def add_book; end
+
+  def add_album
+    print 'Music name: '
+    name = gets.chomp
+    print 'Published data: '
+    publish_date = gets.chomp
+    print 'Music is on Spotify? [Y/N]'
+    spotify = gets.chomp.upcase
+    case spotify
+    when 'Y'
+      spotify = true
+    when 'N'
+      spotify = false
+    end
+
+    album = MusicAlbum.new(name, publish_date, on_spotify: spotify)
+    @albums.push(album)
+    save_album(name, publish_date, spotify)
+    puts 'Music Added successfully'
+  end
+
+  def list_albums
+    
+    puts ''
+    puts 'List of all music albums:'
+    if @albums.empty?
+      puts 'No music recorded yet.'
+      return
+    end
+    @albums.each do |album|
+      puts "Name: #{album.name}, Published date: #{album.publish_date}, On Spotify: #{album.on_spotify}"
+
     end
   end
+
+
 end
+
+
+app = App.new 
+app.add_album
+
+
