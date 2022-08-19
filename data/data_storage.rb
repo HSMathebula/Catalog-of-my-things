@@ -19,6 +19,8 @@ class App # rubocop:disable Metrics/ClassLength
     @authors = []
     load_books
     load_labels
+    load_albums
+    load_genres
   end
 
   def load_books
@@ -284,10 +286,43 @@ class App # rubocop:disable Metrics/ClassLength
     add_book(publish_date,archived,publisher,cover_state)
   end
 
-  def add_game
-  end
+  def list_books; end
+
+  # def add_book; end
+
+  def add_game; end
 
   def add_album
+    print 'Music name: '
+    name = gets.chomp
+    print 'Published data: '
+    publish_date = gets.chomp
+    print 'Music is on Spotify? [Y/N]'
+    spotify = gets.chomp.upcase
+    case spotify
+    when 'Y'
+      spotify = true
+    when 'N'
+      spotify = false
+    end
+
+    album = MusicAlbum.new(name, publish_date, on_spotify: spotify)
+    @albums.push(album)
+    save_album(name, publish_date, spotify)
+    puts 'Music Added successfully'
+  end
+
+  def list_albums
+    
+    puts ''
+    puts 'List of all music albums:'
+    if @albums.empty?
+      puts 'No music recorded yet.'
+      return
+    end
+    @albums.each do |album|
+      puts "Name: #{album.name}, Published date: #{album.publish_date}, On Spotify: #{album.on_spotify}"
+    end
   end
 end
 
