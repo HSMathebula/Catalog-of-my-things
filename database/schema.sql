@@ -9,4 +9,10 @@ CREATE TABLE Games (
   CONSTRAINT item_fk FOREIGN KEY (item_id) REFERENCES Items (id)
 )
 
+CREATE TABLE Authors(
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(100),
+  last_name VARCHAR(100)
+)
+
 
