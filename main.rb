@@ -10,11 +10,10 @@ class Main < App
     '4 : List all genres',
     '5 : List all labels',
     '6 : List all authors',
-    '7 : List all sources',
-    '8 : Add a book',
-    '9 : Add a music album',
-    '10 : Add a game',
-    '11 : Exit'
+    '7 : Add a book',
+    '8 : Add a music album',
+    '9 : Add a game',
+    '10 : Exit'
   ]
 
   @exit = false
