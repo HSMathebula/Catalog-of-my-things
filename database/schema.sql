@@ -53,5 +53,6 @@ CREATE TABLE Labels(
   id SERIAL PRIMARY KEY,
   title VARCHAR(100),
   color VARCHAR(100)
+)
 
 
