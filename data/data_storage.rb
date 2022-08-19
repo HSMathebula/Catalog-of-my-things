@@ -258,7 +258,6 @@ class App # rubocop:disable Metrics/ClassLength
     end
   end
 
-
   def list_books
     load_books
     unless @books.empty?
@@ -267,7 +266,6 @@ class App # rubocop:disable Metrics/ClassLength
       end
     end
   end
-
 
   def add_game
     print 'Publish Date: [YYYY-MM-DD] '
@@ -308,17 +306,17 @@ class App # rubocop:disable Metrics/ClassLength
 
   # user interface start
   def list_books
-   @books.select do |book|
-    p "publisher: #{book.publisher}, publish_date #{book.publish_date}"
-   end
+    @books.select do |book|
+      p "publisher: #{book.publisher}, publish_date #{book.publish_date}"
+    end
   end
 
   def list_labels
     @labels.select do |label|
       p "title: #{label.title}, color: #{label.color}"
-     end
+    end
   end
-  
+
   def get_book
     puts 'when was this book published : '
     publish_date = gets.chomp
@@ -326,25 +324,20 @@ class App # rubocop:disable Metrics/ClassLength
     puts 'is it archived'
     print 'Yes(y) or No(n) : '
     archived = gets.chomp.to_s.downcase
-    if archived.include? 'y'
-      archived = true
-     else
-      archived = false
-    end
+    archived = archived.include? 'y'
     puts 'who is this book publisher : '
     publisher = gets.chomp
     puts 'how is this book cover : '
     cover_state = gets.chomp
-    add_book(publish_date,archived,publisher,cover_state)
-    p "Book added succesfully"
+    add_book(publish_date, archived, publisher, cover_state)
+    p 'Book added succesfully'
   end
-
-
-  # def add_book; end
 
   def add_album
     print 'Music name: '
     name = gets.chomp
+    print 'Genre: '
+    g_name = gets.chomp
     print 'Published data: '
     publish_date = gets.chomp
     print 'Music is on Spotify? [Y/N]'
@@ -354,33 +347,44 @@ class App # rubocop:disable Metrics/ClassLength
       spotify = true
     when 'N'
       spotify = false
+    else
+      puts 'Invalid option \n'
     end
 
     album = MusicAlbum.new(name, publish_date, on_spotify: spotify)
     @albums.push(album)
     save_album(name, publish_date, spotify)
+
+    genre = Genre.new(g_name)
+    @genres.push(genre)
+    save_genre(g_name)
     puts 'Music Added successfully'
   end
 
   def list_albums
-    
     puts ''
     puts 'List of all music albums:'
+    puts ''
     if @albums.empty?
       puts 'No music recorded yet.'
       return
     end
     @albums.each do |album|
-      puts "Name: #{album.name}, Published date: #{album.publish_date}, On Spotify: #{album.on_spotify}"
-
+      puts "Song name: #{album.name},\nPublished date: #{album.publish_date},\nOn Spotify: #{album.on_spotify}\n\n"
     end
   end
 
-
+  def list_genres
+    puts ''
+    puts 'List of all genres:'
+    puts ''
+    if @genres.empty?
+      puts 'No genres recorded yet.'
+      return
+    end
+    @genres.each do |genre|
+      puts "Genre: #{genre.name}"
+    end
+    puts ''
+  end
 end
-
-
-app = App.new 
-app.add_album
-
-

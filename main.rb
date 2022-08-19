@@ -1,5 +1,5 @@
 require_relative './data/data_storage'
-class Main < App
+class Main
   def initialize
     @option = [
       '1 : List all books ',
@@ -29,11 +29,14 @@ class Main < App
   def get_choice(choice)
     case choice
     when 2
-      add_album = App.new
-      add_album.add_album
-    when 8
       list_albums = App.new
       list_albums.list_albums
+    when 4
+      list_genres = App.new
+      list_genres.list_genres
+    when 8
+      add_album = App.new
+      add_album.add_album
     when 10
       @exit = true
     else

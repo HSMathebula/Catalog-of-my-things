@@ -1,6 +1,6 @@
 require 'date'
 class Item
-  attr_accessor :genre, :author,:label
+  attr_accessor :genre, :author, :label
   attr_reader :publish_date
 
   # rubocop:disable Style/OptionalBooleanParameter
