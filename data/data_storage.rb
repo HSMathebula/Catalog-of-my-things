@@ -265,7 +265,24 @@ class App # rubocop:disable Metrics/ClassLength
      end
   end
   
-  
+  def get_book
+    puts 'when was this book published : '
+    publish_date = gets.chomp
+    publish_date.to_i
+    puts 'is it archived'
+    print 'Yes(y) or No(n) : '
+    archived = gets.chomp.to_s.downcase
+    if archived.include? 'y'
+      archived = true
+     else
+      archived = false
+    end
+    puts 'who is this book publisher : '
+    publisher = gets.chomp
+    puts 'how is this book cover : '
+    cover_state = gets.chomp
+    add_book(publish_date,archived,publisher,cover_state)
+  end
 
   def add_game
   end
