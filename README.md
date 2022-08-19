@@ -4,7 +4,8 @@
 Catalog of my things
 > Description the project.
 "Catalog of my things" is be a simple console app that allows users to manage collections of the things they own. It is be based on the following UML class diagram.
-
+## Video Presentation of the project 
+https://www.loom.com/share/ce4a77084874496eba46cb0c5640c27e
 ## Built With
 
 - Major languages Ruby
