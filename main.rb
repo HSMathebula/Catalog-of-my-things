@@ -19,19 +19,7 @@ class Main < App
   @exit = false
   end
 
-  def get_choice(choice)
-    case choice
-    when 1
-
-    when 2
-    # game method
-    when 11
-      @exit = true
-    else
-      puts 'wrong choice !'
-    end
-  end
-
+  
   def main
     until @exit
       @option.each do |opt|
@@ -42,6 +30,9 @@ class Main < App
     end
   end
 
+  def list_book
+  end
+  
   def add_book
   end
 
@@ -51,6 +42,19 @@ class Main < App
   def add_album
   end
 
+  def get_choice(choice)
+    case choice
+    when 1
+  
+    when 2
+    # game method
+    when 11
+      @exit = true
+    else
+      puts 'wrong choice !'
+    end
+  end
+  
 end
 
 
