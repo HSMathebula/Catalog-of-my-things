@@ -40,5 +40,14 @@ CREATE TABLE Genres(
   name VARCHAR(100)
 )
 
+CREATE TABLE Music_Album(
+  id SERIAL PRIMARY KEY,
+  publish_date DATE,
+  name VARCHAR(100),
+  on_spotify BOOLEAN,
+  item_id INT,
+  CONSTRAINT item_fk FOREIGN KEY (item_id) REFERENCES Items (id)
+)
+
 
 
